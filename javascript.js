@@ -34,6 +34,8 @@ function play(computerSelection, playerSelection) {
   else {
     decision = "Tie!";
   }
+  const result = document.querySelector(".result");
+  result.textContent = decision;
   return decision;
 }
 
@@ -55,4 +57,29 @@ function game() {
   console.log(`Computer: ${compScore}\nPlayer: ${playerScore}`);
 }
 
-game();
+const buttons = document.querySelectorAll("button");
+let compScore = 0;
+let playerScore = 0;
+buttons.forEach((btn) =>
+  btn.addEventListener("click", function (e) {
+    let outcome = play(computerPlay(), this.classList.value.toLowerCase());
+    if (outcome.startsWith("You lose!")) {
+      compScore++;
+    } else if (outcome.startsWith("You win!")) {
+      playerScore++;
+    }
+    if (compScore === 5) {
+      console.log(
+        `Computer wins!\nComputer: ${compScore}\nPlayer: ${playerScore}`
+      );
+      compScore = 0;
+      playerScore = 0;
+    } else if (playerScore === 5) {
+      console.log(
+        `Player wins!\nComputer: ${compScore}\nPlayer: ${playerScore}`
+      );
+      compScore = 0;
+      playerScore = 0;
+    }
+  })
+);
