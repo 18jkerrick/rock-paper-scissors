@@ -15,20 +15,20 @@ function computerPlay() {
 function play(computerSelection, playerSelection) {
   let decision = null;
   // losing scenario
-  if (
-    (computerSelection === "rock" && playerSelection === "scissors") ||
-    (computerSelection === "scissors" && playerSelection === "paper") ||
-    (computerSelection === "paper" && playerSelection === "rock")
-  ) {
-    decision = "You lose!";
+  if (computerSelection === "rock" && playerSelection === "scissors") {
+    decision = "You lose! Rock beats scissors";
+  } else if (computerSelection === "scissors" && playerSelection === "paper") {
+    decision = "You lose! Scissors beat Paper";
+  } else if (computerSelection === "paper" && playerSelection === "rock") {
+    decision = "You lose! Paper beat Rock";
   }
   // winning scenario
-  else if (
-    (playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "scissors" && computerSelection === "paper") ||
-    (playerSelection === "paper" && computerSelection === "rock")
-  ) {
-    decision = "You win!";
+  else if (playerSelection === "rock" && computerSelection === "scissors") {
+    decision = "You win! Rock beats Scissors";
+  } else if (playerSelection === "scissors" && computerSelection === "paper") {
+    decision = "You win! Scissors beats Paper";
+  } else if (playerSelection === "paper" && computerSelection === "rock") {
+    decision = "You win! Paper beats rock";
   }
   // tie scenario
   else {
@@ -46,9 +46,9 @@ function game() {
     let playerChoice = prompt("Rock, Paper, Scissors?").toLowerCase();
     let outcome = play(computerPlay(), playerChoice);
     alert(outcome);
-    if (outcome === "You lose!") {
+    if (outcome.startsWith("You lose!")) {
       compScore++;
-    } else if (outcome === "You win!") {
+    } else if (outcome.startsWith("You win!")) {
       playerScore++;
     }
   }
